@@ -1,1 +1,156 @@
-TODO: 1) Installation process
+# AI-Powered Tax Search & Analytics Platform
+
+Smart tax-document search assistant for operations, compliance, and audit teams.
+
+---
+
+## Project Structure
+
+```
+/backend          Express API — all search logic
+/frontend         React UI — search bar, filters, results grid
+/test-harness     QA test script (SEMANTIC-001, FUZZY-001)
+/data             Seed data (20 sample filings)
+```
+
+---
+
+## Quick Start
+
+### 1. Backend
+
+```bash
+cd backend
+npm install
+npm start
+# API running at http://localhost:4000
+```
+
+### 2. Frontend
+
+```bash
+cd frontend
+npm install
+npm start
+# UI running at http://localhost:3000
+```
+
+### 3. QA Test Harness
+
+> Make sure the backend is running first.
+
+```bash
+cd test-harness
+npm install
+npm test
+# or with a custom URL:
+node run-tests.js --base-url http://localhost:4000
+```
+
+---
+
+## API Reference
+
+### `GET /api/search`
+
+Unified search endpoint supporting all modes.
+
+| Parameter        | Type    | Description                                              |
+|------------------|---------|----------------------------------------------------------|
+| `query`          | string  | Search text                                              |
+| `mode`           | string  | `basic` \| `semantic` \| `fuzzy` \| `wildcard` \| `boolean` |
+| `targetField`    | string  | For fuzzy: `clientName` or `employerName`                |
+| `missingSSN`     | boolean | Filter records with missing/empty SSN                    |
+| `wagesGreaterThan` | number | Filter wages strictly above threshold                  |
+| `wagesMin`       | number  | Wage band lower bound (inclusive)                        |
+| `wagesMax`       | number  | Wage band upper bound (inclusive)                        |
+| `state`          | string  | Two-letter state code (e.g., `CA`)                       |
+| `taxYear`        | number  | Four-digit year (e.g., `2021`)                           |
+| `employerName`   | string  | Employer name substring match                            |
+| `formType`       | string  | `W-2` or `1099`                                          |
+| `flags`          | string  | `missing_ssn`, `missing_employer`, `high_wage`           |
+| `page`           | number  | Page number (default: 1)                                 |
+| `pageSize`       | number  | Results per page (default: 50)                           |
+
+**Example requests:**
+
+```
+# 1.1 Missing SSN
+GET /api/search?missingSSN=true
+
+# 1.2 High-income filings
+GET /api/search?wagesGreaterThan=1000000
+
+# 1.3 State + year
+GET /api/search?state=CA&taxYear=2021
+
+# 1.4 Employer + form + year
+GET /api/search?employerName=Acme+Corp&formType=W-2&taxYear=2022
+
+# 2.1 Semantic
+GET /api/search?query=tech+companies&mode=semantic
+
+# 3.1 Fuzzy client name
+GET /api/search?query=Jhon+Smth&mode=fuzzy
+
+# 3.2 Fuzzy employer
+GET /api/search?query=Acmee+Corp&mode=fuzzy&targetField=employerName
+
+# 4.1 Wildcard
+GET /api/search?query=Sm*&mode=wildcard
+
+# 5.1 Boolean
+GET /api/search?query=Smith+OR+Johnson&mode=boolean&taxYear=2022
+
+# 6.1 Wage band
+GET /api/search?wagesMin=50000&wagesMax=100000
+```
+
+---
+
+### `GET /api/facets`
+
+Returns grouped counts by `formType`, `taxYear`, and `state`.
+
+Accepts the same filter params as `/api/search` (no `query`/`mode`).
+
+```
+GET /api/facets
+GET /api/facets?state=CA
+```
+
+---
+
+### `GET /api/suggest`
+
+Autocomplete / suggest-as-you-type.
+
+| Parameter | Type   | Description                              |
+|-----------|--------|------------------------------------------|
+| `prefix`  | string | Partial text typed by the user           |
+| `scope`   | string | `client` \| `employer` \| `all` (default) |
+
+```
+GET /api/suggest?prefix=Jan
+GET /api/suggest?prefix=Tech&scope=employer
+```
+
+---
+
+## UI Features
+
+- **Single search bar** with autocomplete dropdown
+- **Search mode selector**: Basic / Semantic / Fuzzy / Wildcard / Boolean
+- **Compact filter row**: Year, Form, State, Flags (Missing SSN, Missing Employer, High Wage)
+- **Facets panel**: Click any facet to drill down
+- **Results grid**: Client, Employer, Form, Year, State, Wages, Flags — sortable columns
+- **Pagination**: 10 results per page
+
+---
+
+## QA Test Cases
+
+| ID           | Input                          | Expected                                              |
+|--------------|--------------------------------|-------------------------------------------------------|
+| SEMANTIC-001 | `"tech companies"`, semantic   | Results map to technology-related employers           |
+| FUZZY-001    | `"Jhon Smth"`, fuzzy           | "John Smith" appears in top 3 results                 |

@@ -1,0 +1,222 @@
+[
+  {
+    "id": "1",
+    "clientName": "John Smith",
+    "employerName": "TechStart Inc",
+    "formType": "W-2",
+    "taxYear": 2022,
+    "state": "CA",
+    "wages": 95000,
+    "ssn": "123-45-6789",
+    "flags": []
+  },
+  {
+    "id": "2",
+    "clientName": "Jane Doe",
+    "employerName": "Software Dynamics",
+    "formType": "W-2",
+    "taxYear": 2021,
+    "state": "NY",
+    "wages": 120000,
+    "ssn": "",
+    "flags": ["missing_ssn"]
+  },
+  {
+    "id": "3",
+    "clientName": "Robert Johnson",
+    "employerName": "Acme Corp",
+    "formType": "W-2",
+    "taxYear": 2022,
+    "state": "TX",
+    "wages": 75000,
+    "ssn": "987-65-4321",
+    "flags": []
+  },
+  {
+    "id": "4",
+    "clientName": "Emily Davis",
+    "employerName": "Acme Corp",
+    "formType": "1099",
+    "taxYear": 2022,
+    "state": "CA",
+    "wages": 55000,
+    "ssn": "456-78-9012",
+    "flags": []
+  },
+  {
+    "id": "5",
+    "clientName": "Michael Brown",
+    "employerName": "Global Finance LLC",
+    "formType": "W-2",
+    "taxYear": 2021,
+    "state": "CA",
+    "wages": 1500000,
+    "ssn": "321-54-9876",
+    "flags": ["high_wage"]
+  },
+  {
+    "id": "6",
+    "clientName": "Sarah Wilson",
+    "employerName": "TechStart Inc",
+    "formType": "W-2",
+    "taxYear": 2021,
+    "state": "CA",
+    "wages": 88000,
+    "ssn": "",
+    "flags": ["missing_ssn"]
+  },
+  {
+    "id": "7",
+    "clientName": "David Martinez",
+    "employerName": "Software Dynamics",
+    "formType": "1099",
+    "taxYear": 2022,
+    "state": "FL",
+    "wages": 62000,
+    "ssn": "654-32-1098",
+    "flags": []
+  },
+  {
+    "id": "8",
+    "clientName": "Lisa Anderson",
+    "employerName": "CloudNet Systems",
+    "formType": "W-2",
+    "taxYear": 2022,
+    "state": "WA",
+    "wages": 105000,
+    "ssn": "789-01-2345",
+    "flags": []
+  },
+  {
+    "id": "9",
+    "clientName": "James Taylor",
+    "employerName": "Retail Masters",
+    "formType": "W-2",
+    "taxYear": 2021,
+    "state": "TX",
+    "wages": 45000,
+    "ssn": "",
+    "flags": ["missing_ssn"]
+  },
+  {
+    "id": "10",
+    "clientName": "Patricia Thomas",
+    "employerName": "HealthCare Plus",
+    "formType": "W-2",
+    "taxYear": 2022,
+    "state": "NY",
+    "wages": 2200000,
+    "ssn": "111-22-3333",
+    "flags": ["high_wage"]
+  },
+  {
+    "id": "11",
+    "clientName": "Christopher Jackson",
+    "employerName": "Acme Corp",
+    "formType": "W-2",
+    "taxYear": 2021,
+    "state": "CA",
+    "wages": 67000,
+    "ssn": "222-33-4444",
+    "flags": []
+  },
+  {
+    "id": "12",
+    "clientName": "Amanda White",
+    "employerName": "DataPipe Technologies",
+    "formType": "1099",
+    "taxYear": 2021,
+    "state": "CA",
+    "wages": 80000,
+    "ssn": "333-44-5555",
+    "flags": []
+  },
+  {
+    "id": "13",
+    "clientName": "Kevin Harris",
+    "employerName": "TechStart Inc",
+    "formType": "W-2",
+    "taxYear": 2022,
+    "state": "NY",
+    "wages": 72000,
+    "ssn": "444-55-6666",
+    "flags": []
+  },
+  {
+    "id": "14",
+    "clientName": "Stephanie Clark",
+    "employerName": "Retail Masters",
+    "formType": "W-2",
+    "taxYear": 2022,
+    "state": "FL",
+    "wages": 38000,
+    "ssn": "",
+    "flags": ["missing_ssn", "missing_employer"]
+  },
+  {
+    "id": "15",
+    "clientName": "Brian Lewis",
+    "employerName": "Software Dynamics",
+    "formType": "W-2",
+    "taxYear": 2022,
+    "state": "CA",
+    "wages": 91000,
+    "ssn": "555-66-7777",
+    "flags": []
+  },
+  {
+    "id": "16",
+    "clientName": "Megan Robinson",
+    "employerName": "CloudNet Systems",
+    "formType": "1099",
+    "taxYear": 2021,
+    "state": "WA",
+    "wages": 58000,
+    "ssn": "666-77-8888",
+    "flags": []
+  },
+  {
+    "id": "17",
+    "clientName": "Daniel Walker",
+    "employerName": "Global Finance LLC",
+    "formType": "W-2",
+    "taxYear": 2022,
+    "state": "TX",
+    "wages": 1100000,
+    "ssn": "777-88-9999",
+    "flags": ["high_wage"]
+  },
+  {
+    "id": "18",
+    "clientName": "Ashley Hall",
+    "employerName": "DataPipe Technologies",
+    "formType": "W-2",
+    "taxYear": 2022,
+    "state": "CA",
+    "wages": 69000,
+    "ssn": "888-99-0000",
+    "flags": []
+  },
+  {
+    "id": "19",
+    "clientName": "Ryan Young",
+    "employerName": "HealthCare Plus",
+    "formType": "1099",
+    "taxYear": 2021,
+    "state": "NY",
+    "wages": 53000,
+    "ssn": "999-00-1111",
+    "flags": []
+  },
+  {
+    "id": "20",
+    "clientName": "Nicole King",
+    "employerName": "Acme Corp",
+    "formType": "W-2",
+    "taxYear": 2021,
+    "state": "CA",
+    "wages": 84000,
+    "ssn": "",
+    "flags": ["missing_ssn"]
+  }
+]

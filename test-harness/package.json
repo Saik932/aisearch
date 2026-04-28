@@ -1,0 +1,12 @@
+{
+  "name": "tax-search-test-harness",
+  "version": "1.0.0",
+  "description": "QA test harness for Tax Search & Analytics Platform",
+  "main": "run-tests.js",
+  "scripts": {
+    "test": "node run-tests.js"
+  },
+  "dependencies": {
+    "node-fetch": "^2.7.0"
+  }
+}
