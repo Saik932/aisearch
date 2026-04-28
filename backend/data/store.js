@@ -1,30 +1,15 @@
 /**
  * store.js
- * Data access layer — wraps MongoDB queries behind a simple async interface.
- * The search engine calls these functions instead of reading from a flat array.
+ * In-memory data store — loads seed data once at startup from seed.json.
+ * In production this would be replaced by a database client.
  */
 
 "use strict";
 
-const TaxRecord = require("../models/TaxRecord");
+const path = require("path");
+const fs   = require("fs");
 
-/**
- * Returns all records as plain JS objects.
- * Used by the search engine which operates on in-memory arrays after fetch.
- */
-async function getAllRecords() {
-  const docs = await TaxRecord.find({}).lean();
-  return docs.map((d) => ({
-    id: d._id.toString(),
-    clientName:   d.clientName   || "",
-    employerName: d.employerName || "",
-    formType:     d.formType     || "",
-    taxYear:      d.taxYear,
-    state:        d.state        || "",
-    wages:        d.wages        || 0,
-    ssn:          d.ssn          || "",
-    flags:        d.flags        || [],
-  }));
-}
+const seedPath = path.resolve(__dirname, "../../data/seed.json");
+const records  = JSON.parse(fs.readFileSync(seedPath, "utf-8"));
 
-module.exports = { getAllRecords };
+module.exports = { records };

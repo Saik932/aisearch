@@ -1,18 +1,16 @@
 /**
  * server.js — Tax Search & Analytics Platform
  *
- * Connects to MongoDB Atlas, then starts the Express HTTP server.
+ * Express server using in-memory JSON data store (data/seed.json).
+ * No database required — data is loaded at startup from the seed file.
  */
 
 "use strict";
 
-require("dotenv").config();
-
-const express    = require("express");
-const cors       = require("cors");
-const swaggerUi  = require("swagger-ui-express");
+const express     = require("express");
+const cors        = require("cors");
+const swaggerUi   = require("swagger-ui-express");
 const swaggerSpec = require("./swagger");
-const connectDB  = require("./db/connect");
 const searchRoutes = require("./routes/search");
 
 const app  = express();
@@ -37,6 +35,7 @@ app.get("/", (_req, res) => {
   res.json({
     name: "Tax Search & Analytics API",
     status: "running",
+    dataStore: "in-memory (data/seed.json)",
     docs: `http://localhost:${PORT}/api-docs`,
     endpoints: {
       health:  "GET /health",
@@ -56,7 +55,7 @@ app.get("/health", (_req, res) =>
 // Search, facets, suggest
 app.use("/api", searchRoutes);
 
-// Swagger UI
+// Swagger UI — interactive API docs
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec, {
   customSiteTitle: "Tax Search API Docs",
   swaggerOptions: {
@@ -81,13 +80,12 @@ app.use((err, _req, res, _next) => {
   });
 });
 
-// ── Start: connect DB first, then listen ─────────────────────────────────────
-connectDB().then(() => {
-  app.listen(PORT, () => {
-    console.log(`Tax Search API running on http://localhost:${PORT}`);
-    console.log(`  Swagger UI  → http://localhost:${PORT}/api-docs`);
-    console.log(`  Frontend UI → http://localhost:3000`);
-  });
+// ── Start ─────────────────────────────────────────────────────────────────────
+app.listen(PORT, () => {
+  console.log(`Tax Search API running on http://localhost:${PORT}`);
+  console.log(`  Data store  → in-memory (data/seed.json)`);
+  console.log(`  Swagger UI  → http://localhost:${PORT}/api-docs`);
+  console.log(`  Frontend UI → http://localhost:3000`);
 });
 
 module.exports = app;
