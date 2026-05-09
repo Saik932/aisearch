@@ -1,0 +1,65 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# terraform.tfvars.example
+#
+# Copy this file to terraform.tfvars and fill in your actual values.
+# NEVER commit terraform.tfvars to git — it contains secrets.
+# ─────────────────────────────────────────────────────────────────────────────
+
+# ── Atlas API Keys ────────────────────────────────────────────────────────────
+# Generate at: https://cloud.mongodb.com → Access Manager → API Keys
+# Required permissions: Project Owner or Organization Owner
+mongodbatlas_public_key  = "your-public-key-here"
+mongodbatlas_private_key = "your-private-key-here"
+
+# ── Organization ID ───────────────────────────────────────────────────────────
+# Find at: https://cloud.mongodb.com → Settings → Organization ID
+atlas_org_id = "your-org-id-here"
+
+# ── Project & Cluster ─────────────────────────────────────────────────────────
+project_name = "my-atlas-project"
+cluster_name = "myCluster"
+
+# Cluster tier options:
+#   M0  = Free (512MB, shared)
+#   M10 = $0.08/hr (~$57/month, dedicated)
+#   M20 = $0.20/hr (~$144/month)
+cluster_tier = "M0"
+
+# Cloud provider: AWS | GCP | AZURE
+cloud_provider = "AWS"
+
+# Region examples:
+#   AWS:   US_EAST_1, US_WEST_2, EU_WEST_1
+#   GCP:   US_CENTRAL1, EUROPE_WEST1
+#   AZURE: US_EAST_2, EUROPE_NORTH
+region = "US_EAST_1"
+
+mongo_db_major_version = "7.0"
+
+# ── Database User ─────────────────────────────────────────────────────────────
+db_username = "appUser"
+db_password = "YourSecurePassword123!"  # Use a strong password
+
+# Role options:
+#   atlasAdmin              → Full admin access (dev only)
+#   readWriteAnyDatabase    → Read/write all databases
+#   readAnyDatabase         → Read-only all databases
+db_role = "readWriteAnyDatabase"
+
+# ── Network Access (IP Whitelist) ─────────────────────────────────────────────
+# IMPORTANT: 0.0.0.0/0 allows all IPs — use only for dev/testing
+# For production, specify exact IPs or CIDR blocks
+allowed_ip_addresses = [
+  {
+    cidr_block = "0.0.0.0/0"
+    comment    = "Allow all (dev only)"
+  }
+  # Add more IPs as needed:
+  # {
+  #   cidr_block = "203.0.113.5/32"
+  #   comment    = "Production server"
+  # }
+]
+
+# ── Database Name ─────────────────────────────────────────────────────────────
+database_name = "myDatabase"
