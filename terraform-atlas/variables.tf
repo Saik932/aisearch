@@ -9,13 +9,13 @@
 variable "mongodbatlas_public_key" {
   description = "MongoDB Atlas API public key"
   type        = string
-  sensitive   = true
+  sensitive   = false
 }
 
 variable "mongodbatlas_private_key" {
   description = "MongoDB Atlas API private key"
   type        = string
-  sensitive   = true
+  sensitive   = false
 }
 
 # ── Project ───────────────────────────────────────────────────────────────────
@@ -46,19 +46,19 @@ variable "cluster_tier" {
 variable "cloud_provider" {
   description = "Cloud provider: AWS, GCP, or AZURE"
   type        = string
-  default     = "AWS"
+  default     = "AZURE"
 }
 
 variable "region" {
   description = "Cloud provider region for the cluster"
   type        = string
-  default     = "US_EAST_1"
+  default     = "US_EAST_2"
 }
 
 variable "mongo_db_major_version" {
   description = "MongoDB major version"
   type        = string
-  default     = "7.0"
+  default     = "8.0"
 }
 
 # ── Database User ─────────────────────────────────────────────────────────────
@@ -71,7 +71,7 @@ variable "db_username" {
 variable "db_password" {
   description = "Database user password"
   type        = string
-  sensitive   = true
+  sensitive   = false
 }
 
 variable "db_role" {

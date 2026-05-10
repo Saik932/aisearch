@@ -26,15 +26,15 @@ cluster_name = "myCluster"
 cluster_tier = "M0"
 
 # Cloud provider: AWS | GCP | AZURE
-cloud_provider = "AWS"
+cloud_provider = "AZURE"
 
 # Region examples:
 #   AWS:   US_EAST_1, US_WEST_2, EU_WEST_1
 #   GCP:   US_CENTRAL1, EUROPE_WEST1
 #   AZURE: US_EAST_2, EUROPE_NORTH
-region = "US_EAST_1"
+region = "US_EAST_2"
 
-mongo_db_major_version = "7.0"
+mongo_db_major_version = "8.0"
 
 # ── Database User ─────────────────────────────────────────────────────────────
 db_username = "appUser"
